@@ -1,26 +1,89 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #212529;
+  --foreground: #edeeef;
+  --accent: #fcbc1d;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-accent: var(--accent);
+  --font-sans: var(--font-source-sans);
+  --font-heading: var(--font-montserrat);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-source-sans), Helvetica, Arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-montserrat), Helvetica, Arial, sans-serif;
+}
+
+/* Icon spin-on-hover */
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  to { transform: rotate(1turn); }
+}
+@keyframes rotate-backward {
+  0% { transform: rotate(1turn); }
+  to { transform: rotate(0deg); }
+}
+.icon-spin {
+  animation: rotate-backward 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out;
+}
+a:hover > .icon-spin,
+button:hover > .icon-spin {
+  animation: rotate 0.5s ease-in-out;
+}
+
+@keyframes pulse-soft {
+  0%, to { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.02); }
+}
+.pulse-soft {
+  animation: pulse-soft 2.5s ease-in-out infinite;
+}
+
+/* Typewriter cursor blink */
+@keyframes blink {
+  0%, to { opacity: 0.6; }
+  50% { opacity: 0; }
+}
+.type-cursor {
+  animation: blink 0.8s steps(2, start) infinite;
+}
+
+/* Profile photo: grayscale until hover, then color + tilt */
+.profile-picture {
+  border: 8px solid #edeeef;
+  border-radius: 100%;
+  filter: grayscale(95%) brightness(0.9) saturate(0.6) hue-rotate(-30deg);
+  overflow: hidden;
+  transition: transform 0.7s ease, filter 0.7s ease, border-color 0.7s ease;
+}
+.profile-picture:hover {
+  border-color: #fcbc1d;
+  filter: grayscale(0);
+  transform: scale(1.1) rotate(2deg);
+}
+
+/* Glass surfaces */
+.glass-box {
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  background: linear-gradient(145deg, rgba(33, 37, 41, 0.3), rgba(24, 26, 29, 0.3));
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+.glass-input {
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(10px);
+  background: linear-gradient(135deg, rgba(33, 37, 41, 0.85), rgba(33, 37, 41, 0.65) 50%, rgba(33, 37, 41, 0.85));
 }

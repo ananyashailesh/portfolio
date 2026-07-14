@@ -8,6 +8,12 @@ export const profile = {
   github: "https://github.com/ananyashailesh",
   summary:
     "B.Tech Computer Science student (AI & Robotics) at VIT Chennai, building AI-powered systems ranging from enterprise chatbots and drone ground control software to assistive robotics.",
+  roles: [
+    "AI/ML Engineer",
+    "Full-Stack Developer",
+    "Robotics Enthusiast",
+    "CS Student @ VIT Chennai",
+  ],
 };
 
 export const education = [
